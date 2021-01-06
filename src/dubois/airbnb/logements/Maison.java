@@ -15,17 +15,17 @@ public class Maison extends Logement{
     @Override
     public void afficher() {
         mHote.afficher();
-        System.out.println("Le logement est une maison situé "+mAdresse+".");
-        System.out.println("Superficie : "+mSuperficie+"m2");
+        mText = "Le logement est une maison situé "+mAdresse+".\nSuperficie : "+mSuperficie+"m2 \n";
         if(mSuperficieJardin > 0){
-            System.out.println("Jardin : Oui ("+mSuperficieJardin+"m2)");
+            mText = mText +"Jardin : Oui ("+mSuperficieJardin+"m2)\n";
         }else{
-            System.out.println("Jardin : Non");
+            mText = mText +"Jardin : Non\n";
         }
         if(mPossedePiscine){
-            System.out.println("Piscine : Oui");
+            mText = mText +"Piscine : Oui";
         }else{
-            System.out.println("Piscine : Non");
+            mText = mText +"Piscine : Non";
         }
+        System.out.println(mText);
     }
 }

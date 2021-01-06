@@ -14,16 +14,15 @@ public class Appartement extends Logement{
     @Override
     public void afficher() {
         mHote.afficher();
-        System.out.print("Le logement est une maison situé "+mAdresse+" au ");
         String etage = mNumeroEtage+"ème étage.";
         if(mNumeroEtage == 0){ etage = "rez-de-chaussee.";}
         else if(mNumeroEtage == 1){ etage = "1er étage.";}
-        System.out.println(etage);
-        System.out.println("Superficie : "+mSuperficie+"m2");
+        mText = "Le logement est un appartement situé "+mAdresse+" au "+etage+"\nSuperficie : "+mSuperficie+"m2 \n";
         if(mSuperficieBalcon > 0){
-            System.out.println("Balcon : Oui ("+mSuperficieBalcon+"m2)");
+            mText = mText + "Balcon : Oui ("+mSuperficieBalcon+"m2)";
         }else{
-            System.out.println("Balcon : Non");
+            mText = mText + "Balcon : Non";
         }
+        System.out.println(mText);
     }
 }

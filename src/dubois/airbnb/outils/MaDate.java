@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MaDate extends Date {
-    private String mFormat;
+    private SimpleDateFormat sdf;
 
     /**
      * @param pFormat  : Format que l'on veut donner à la date
@@ -35,7 +35,7 @@ public class MaDate extends Date {
      */
     public MaDate(String pFormat, String pDateString){
         super(parse(pDateString));
-        mFormat = pFormat;
+        sdf = new SimpleDateFormat(pFormat);
     }
 
     /**
@@ -43,6 +43,6 @@ public class MaDate extends Date {
      */
     @Override
     public String toString(){
-        return new SimpleDateFormat(mFormat).format(this);
+        return sdf.format(this);
    }
 }

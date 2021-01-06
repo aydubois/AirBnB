@@ -8,6 +8,7 @@ public abstract class Logement {
     protected String mAdresse;
     protected int mSuperficie;
     private int mNbVoyageursMax;
+    protected String mText;
 
     public Logement(Hote pHote, int pTarifParNuit, String pAdresse, int pSuperficie, int pNbVoyageursMax){
         mHote = pHote;
