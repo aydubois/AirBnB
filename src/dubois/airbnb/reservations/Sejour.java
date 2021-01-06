@@ -5,12 +5,12 @@ import dubois.airbnb.outils.MaDate;
 import java.util.Date;
 
 public class Sejour {
-    private Date mDateArrivee;
+    private MaDate mDateArrivee;
     private int mNbNuits;
     private Logement mLogement;
     private int mNbVoyageurs;
 
-    public Sejour(Date pDateArrivee,int pNbNuits, Logement pLogement, int pNbVoyageurs){
+    public Sejour(MaDate pDateArrivee,int pNbNuits, Logement pLogement, int pNbVoyageurs){
         mDateArrivee = pDateArrivee;
         mNbNuits = pNbNuits;
         mLogement = pLogement;
@@ -18,7 +18,7 @@ public class Sejour {
     }
 
     public void afficher(){
-        String dateA = new MaDate("dd/MM/yyyy", mDateArrivee).toString();
+        String dateA = mDateArrivee.toString();
         int tarifTotal = mNbNuits * mLogement.getTarifParNuit();
 
         mLogement.afficher();

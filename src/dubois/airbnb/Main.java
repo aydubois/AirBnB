@@ -12,8 +12,8 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        Date dateChoisie = new MaDate("dd/MM/yyyy","01/07/2021" ).toDate();
-        Date dateReserv = new MaDate("dd/MM/yyyy","01/01/2021").toDate();
+        MaDate dateChoisie = new MaDate("dd/MM/yyyy","01/07/2021" );
+        MaDate dateReserv = new MaDate("dd/MM/yyyy","01/01/2021");
 
         Hote ponyo = new Hote("Ponyo", "Poppy", 28, 10);
         Voyageur noman = new Voyageur("Noman", "Sky", 39);
