@@ -18,7 +18,7 @@ public class SejourLong extends Sejour{
     }
     @Override
     public void miseAJourDuTarif(){
-        mPromotion = (int)(mNbNuits * mLogement.getTarifParNuit()*(PROMOTION_EN_POURCENTAGE*0.01));
+        mPromotion = mNbNuits * mLogement.getTarifParNuit()*PROMOTION_EN_POURCENTAGE / 100;
         mTarif =(mNbNuits * mLogement.getTarifParNuit() - mPromotion);
     }
 

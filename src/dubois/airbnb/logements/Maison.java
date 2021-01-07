@@ -28,4 +28,8 @@ public class Maison extends Logement{
         }
         System.out.println(mText);
     }
+    @Override
+    public int getIdentifiant() {
+        return mIdentifiant;
+    }
 }

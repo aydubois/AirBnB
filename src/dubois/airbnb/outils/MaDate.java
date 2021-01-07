@@ -45,4 +45,5 @@ public class MaDate extends Date {
     public String toString(){
         return sdf.format(this);
    }
+    public String getFormat(){ return sdf.toPattern();}
 }

@@ -25,4 +25,9 @@ public class Appartement extends Logement{
         }
         System.out.println(mText);
     }
+
+    @Override
+    public int getIdentifiant() {
+        return mIdentifiant;
+    }
 }

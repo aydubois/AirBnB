@@ -21,13 +21,25 @@ public abstract class Sejour implements SejourInterface{
     }
     @Override
     public boolean verificationDateArrivee() {
-        return mDateArrivee.compareTo(new Date()) > 0 ? true : false;
+        return mDateArrivee.after(new Date());
     }
     @Override
     public boolean verificationNombreDeVoyageurs() {
-        return mLogement.getNbVoyageursMax() >= mNbVoyageurs ? true : false;
+        return mLogement.getNbVoyageursMax() >= mNbVoyageurs && mNbVoyageurs  > 0 ? true : false;
     }
 
     public abstract void afficher();
     public abstract void miseAJourDuTarif();
+    public Logement getLogement(){
+        return mLogement;
+    }
+    public MaDate getDateArrivee(){
+        return mDateArrivee;
+    }
+    public int getNbNuits(){
+        return mNbNuits;
+    }
+    public int getNbVoyageurs(){
+        return mNbVoyageurs;
+    }
 }

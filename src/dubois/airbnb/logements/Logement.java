@@ -3,6 +3,8 @@ package dubois.airbnb.logements;
 import dubois.airbnb.utilisateurs.Hote;
 
 public abstract class Logement {
+    private static int id = 0;
+    protected int mIdentifiant;
     protected Hote mHote;
     private int mTarifParNuit;
     protected String mAdresse;
@@ -16,6 +18,8 @@ public abstract class Logement {
         mAdresse = pAdresse;
         mSuperficie = pSuperficie;
         mNbVoyageursMax = pNbVoyageursMax;
+        mIdentifiant = ++id;
+
     }
 
     public int getTarifParNuit() {
@@ -25,4 +29,5 @@ public abstract class Logement {
         return mNbVoyageursMax;
     }
     public abstract void afficher();
+    public abstract int getIdentifiant();
 }

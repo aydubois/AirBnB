@@ -39,7 +39,11 @@ public class JeuDeTest {
         sejour = createSejour(dateN, "", "");
         dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
 
-        reservation = new Reservation(sejour, voyageur, dateN);
+        try{
+            reservation = new Reservation(sejour, voyageur, dateN);
+        }catch(Exception e){
+            System.out.println("La réservation de ce séjour est impossible.");
+        }
 
     }
 
@@ -58,8 +62,11 @@ public class JeuDeTest {
         sejour = createSejour(dateN, pTypeLogement, pTypeDuree);
         dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
 
-        reservation = new Reservation(sejour, voyageur, dateN);
-
+        try{
+            reservation = new Reservation(sejour, voyageur, dateN);
+        }catch(Exception e){
+            System.out.println("La réservation de ce séjour est impossible.");
+        }
     }
     private String getListePrenom(){
         return listePrenom[new Random().nextInt(listePrenom.length)];
