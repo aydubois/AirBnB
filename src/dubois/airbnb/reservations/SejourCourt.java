@@ -15,6 +15,7 @@ public class SejourCourt extends Sejour{
     public boolean verificationNombreDeNuits() {
         return mNbNuits >= 1 && mNbNuits < 6 ? true : false;
     }
+
     @Override
     public void miseAJourDuTarif(){
         mTarif = mNbNuits * mLogement.getTarifParNuit();

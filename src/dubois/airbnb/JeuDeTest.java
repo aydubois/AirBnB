@@ -80,18 +80,9 @@ public class JeuDeTest {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
     private Sejour createSejour(MaDate pdate, String pTypeLogement, String pDuree){
-        String logement = "";
-        if(pTypeLogement == ""){
-            logement = randomInt(0,1) == 0 ? "appartement" : "maison";
-        }else{
-            logement = pTypeLogement;
-        }
-        String duree = "";
-        if(pDuree == ""){
-            duree = randomInt(0,1) == 0 ? "court" : "long";
-        }else{
-            duree = pDuree;
-        }
+        String logement = pTypeLogement == "" ? (randomInt(0,1) == 0 ? "appartement" : "maison") : pTypeLogement;
+        String duree = pDuree == "" ? (randomInt(0,1) == 0 ? "court" : "long") : pDuree;
+
         if(logement == "maison"){
             if(duree == "court"){
                 sejour = new SejourCourt(pdate, randomInt(1,5), maison, randomInt(1,15));
