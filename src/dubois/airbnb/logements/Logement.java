@@ -21,5 +21,8 @@ public abstract class Logement {
     public int getTarifParNuit() {
         return mTarifParNuit;
     }
+    public int getNbVoyageursMax() {
+        return mNbVoyageursMax;
+    }
     public abstract void afficher();
 }

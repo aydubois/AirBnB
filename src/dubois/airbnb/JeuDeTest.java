@@ -5,6 +5,8 @@ import dubois.airbnb.logements.Maison;
 import dubois.airbnb.outils.MaDate;
 import dubois.airbnb.reservations.Reservation;
 import dubois.airbnb.reservations.Sejour;
+import dubois.airbnb.reservations.SejourCourt;
+import dubois.airbnb.reservations.SejourLong;
 import dubois.airbnb.utilisateurs.Hote;
 import dubois.airbnb.utilisateurs.Voyageur;
 
@@ -12,57 +14,76 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class JeuDeTest {
-    private static final String[] prenom = {"Adam","Alex","Alexandre","Alexis","Anthony","Antoine","Benjamin","Cédric","Charles","Christopher","David","Dylan","Édouard","Elliot","Émile","Étienne","Félix","Gabriel","Guillaume","Hugo","Benoîst","Jacob","Jérémy","Jonathan"};
-    private static final String[] nom = {"Dupond","Durand","Dubois","Desbois","Martin","Moreau","Richard","Devanneaux","Lawniczak","Dumas","Lacroix","Perrot","Marchal","Leclerc","Laffont","Vidal","Corona","Fontaine","Marty","Poiret","Brun","Laporte","Adam","Martinez"};
-    private static final String[] adresse = {"31 allée de la fontaine, 37000 Tours","2 avenue Margot, 38000 Grenoble","10 rue du sac, 37000 Tours","453 champ des meilleurs vignerons, 47000 Bordeaux","21 rue de la porte, 37100 Tours Nord"};
-    private static final String[] dateDeReservation = {"12/04/2021","28/01/2020","15/06/2021","01/01/2041","31/12/2021","28/07/2025","01/11/2022","31/04/2021"};
+    private  final String[] listePrenom = {"Amélie","Angélique","Corinne","Juliette","Stéphanie","Marjorie","Adam","Alex","Alexandre","Alexis","Anthony","Antoine","Benjamin","Cédric","Charles","Christopher","David","Dylan","Édouard","Elliot","Émile","Étienne","Félix","Gabriel","Guillaume","Hugo","Benoîst","Jacob","Jérémy","Jonathan"};
+    private  final String[] listeNom = {"Dupond","Durand","Dubois","Desbois","Martin","Moreau","Richard","Devanneaux","Lawniczak","Dumas","Lacroix","Perrot","Marchal","Leclerc","Laffont","Vidal","Corona","Fontaine","Marty","Poiret","Brun","Laporte","Adam","Martinez"};
+    private  final String[] listeAdresse = {"31 allée de la fontaine, 37000 Tours","2 avenue Margot, 38000 Grenoble","10 rue du sac, 37000 Tours","453 champ des meilleurs vignerons, 47000 Bordeaux","21 rue de la porte, 37100 Tours Nord"};
+    private  final String[] listeDateDeReservation = {"12/04/2021","28/01/2020","15/06/2021","01/01/2041","31/12/2021","28/07/2025","01/11/2022","31/04/2021"};
 
-    private static String getPrenom(){
-        return prenom[new Random().nextInt(prenom.length)];
+    private Hote hote;
+    private Voyageur voyageur;
+    private Appartement appartement;
+    private Maison maison;
+    private Sejour sejour;
+    private Reservation reservation;
+
+    /**
+     * Mise en place aléatoire d'un jeu de test : hote/voyageur/logement/sejour/reservation
+     */
+    public JeuDeTest(){
+        hote = new Hote(getListePrenom(),getListeNom(), randomInt(2,100), randomInt(1,60));
+        voyageur = new Voyageur(getListePrenom(),getListeNom(), randomInt(2,100));
+        maison =  new Maison(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,5000), randomInt(1,15), getPiscine(),randomInt(50,8000));
+        appartement = new Appartement(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,500), randomInt(1,15), randomInt(1,50),randomInt(0,20));
+
+        MaDate dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
+        sejour = createSejour(dateN);
+        dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
+
+        reservation = new Reservation(sejour, voyageur, dateN);
+
     }
-    private static String getNom(){
-        return nom[new Random().nextInt(nom.length)];
+    private String getListePrenom(){
+        return listePrenom[new Random().nextInt(listePrenom.length)];
     }
-    private static String getAdresse(){
-        return adresse[new Random().nextInt(adresse.length)];
+    private String getListeNom(){
+        return listeNom[new Random().nextInt(listeNom.length)];
     }
-    public static String getDateDeReservation(){
-        return dateDeReservation[new Random().nextInt(dateDeReservation.length)];
+    private String getListeAdresse(){
+        return listeAdresse[new Random().nextInt(listeAdresse.length)];
     }
-    private static boolean getPiscine(){
-        if(randomInt(0,1) == 0){
-            return false;
-        }else{
-            return true;
-        }
+    private String getListeDateDeReservation(){
+        return listeDateDeReservation[new Random().nextInt(listeDateDeReservation.length)];
     }
-    private static int randomInt(int min,int max){
+    private boolean getPiscine(){
+        return randomInt(0,1) == 0 ? false : true;
+    }
+    private int randomInt(int min,int max){
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
-
-    public static Hote getHote(){
-        return new Hote(getPrenom(),getNom(), randomInt(2,100), randomInt(1,60));
-    }
-    public static Voyageur getVoyageur(){
-        return new Voyageur(getPrenom(),getNom(), randomInt(2,100));
-    }
-    public static Maison getMaison(){
-        return new Maison(getHote(), randomInt(50,1500), getAdresse(), randomInt(20,5000), randomInt(1,15), getPiscine(),randomInt(50,8000));
-    }
-    public static Appartement getAppartement(){
-        return new Appartement(getHote(), randomInt(50,1500), getAdresse(), randomInt(20,500), randomInt(1,15), randomInt(1,50),randomInt(0,20));
-    }
-    public static Sejour getSejour(){
-        MaDate dateN = new MaDate("dd/MM/yyyy",getDateDeReservation());
-        if(randomInt(0,1) == 0){
-            return new Sejour(dateN, randomInt(1,365), getAppartement(), randomInt(1,15));
+    private Sejour createSejour(MaDate pdate){
+        String logement = randomInt(0,1) == 0 ? "appartement" : "maison";
+        String duree = randomInt(0,1) == 0 ? "court" : "long";
+        if(logement == "maison"){
+            if(duree == "court"){
+                sejour = new SejourCourt(pdate, randomInt(1,5), maison, randomInt(1,15));
+            }else{
+                sejour = new SejourLong(pdate, randomInt(6,31), maison, randomInt(1,15));
+            }
         }else{
-            return new Sejour(dateN, randomInt(1,365), getMaison(), randomInt(1,15));
+            if(duree == "court"){
+                sejour = new SejourCourt(pdate, randomInt(1,5), appartement, randomInt(1,15));
+            }else{
+                sejour = new SejourLong(pdate, randomInt(6,31), appartement, randomInt(1,15));
+            }
         }
+        return sejour;
     }
-    public static Reservation getReservation(){
-        MaDate dateN = new MaDate("dd/MM/yyyy",getDateDeReservation());
-        return new Reservation(getSejour(), getVoyageur(), dateN);
-    }
+
+    public Hote getHote(){ return hote;}
+    public Voyageur getVoyageur(){return voyageur;}
+    public Maison getMaison(){return maison;}
+    public Appartement getAppartement(){return appartement;}
+    public Sejour getSejour(){return sejour;}
+    public Reservation getReservation(){return reservation;}
 
 }
