@@ -36,7 +36,26 @@ public class JeuDeTest {
         appartement = new Appartement(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,500), randomInt(1,15), randomInt(1,50),randomInt(0,20));
 
         MaDate dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
-        sejour = createSejour(dateN);
+        sejour = createSejour(dateN, "", "");
+        dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
+
+        reservation = new Reservation(sejour, voyageur, dateN);
+
+    }
+
+    /**
+     * Mise en place aléatoire d'un jeu de test : hote/voyageur/logement/sejour/reservation
+     * @param pTypeLogement => "maison" OU "appartement". Si une autre valeur -> automatiquement "appartement"
+     * @param pTypeDuree => "court" OU "long". Si une autre valeur -> automatiquement "long"
+     */
+    public JeuDeTest(String pTypeLogement, String pTypeDuree){
+        hote = new Hote(getListePrenom(),getListeNom(), randomInt(2,100), randomInt(1,60));
+        voyageur = new Voyageur(getListePrenom(),getListeNom(), randomInt(2,100));
+        maison =  new Maison(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,5000), randomInt(1,15), getPiscine(),randomInt(50,8000));
+        appartement = new Appartement(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,500), randomInt(1,15), randomInt(1,50),randomInt(0,20));
+
+        MaDate dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
+        sejour = createSejour(dateN, pTypeLogement, pTypeDuree);
         dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
 
         reservation = new Reservation(sejour, voyageur, dateN);
@@ -60,9 +79,19 @@ public class JeuDeTest {
     private int randomInt(int min,int max){
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
-    private Sejour createSejour(MaDate pdate){
-        String logement = randomInt(0,1) == 0 ? "appartement" : "maison";
-        String duree = randomInt(0,1) == 0 ? "court" : "long";
+    private Sejour createSejour(MaDate pdate, String pTypeLogement, String pDuree){
+        String logement = "";
+        if(pTypeLogement == ""){
+            logement = randomInt(0,1) == 0 ? "appartement" : "maison";
+        }else{
+            logement = pTypeLogement;
+        }
+        String duree = "";
+        if(pDuree == ""){
+            duree = randomInt(0,1) == 0 ? "court" : "long";
+        }else{
+            duree = pDuree;
+        }
         if(logement == "maison"){
             if(duree == "court"){
                 sejour = new SejourCourt(pdate, randomInt(1,5), maison, randomInt(1,15));

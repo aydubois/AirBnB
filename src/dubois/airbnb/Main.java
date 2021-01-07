@@ -12,6 +12,7 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) throws Exception {
         JeuDeTest jdt = new JeuDeTest();
+        JeuDeTest jdt2 = new JeuDeTest("maison","long");
 
         //MaDate dateChoisie = new MaDate("dd/MM/yyyy","01/07/2021" );
         //MaDate dateReserv = new MaDate("dd/MM/yyyy","01/01/2021");
@@ -24,7 +25,8 @@ public class Main {
         //log1.afficher();
         //sejour1.afficher();
         //reserv1.afficher();
-        Reservation reserv2 = jdt.getReservation();
+        Reservation reserv1 = jdt.getReservation();
+        Reservation reserv2 = jdt2.getReservation();
         reserv2.afficher();
     }
 }
