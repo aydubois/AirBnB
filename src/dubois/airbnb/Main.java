@@ -1,13 +1,7 @@
 package dubois.airbnb;
 
-import dubois.airbnb.logements.Maison;
-import dubois.airbnb.outils.MaDate;
 import dubois.airbnb.reservations.Reservation;
-import dubois.airbnb.reservations.Sejour;
-import dubois.airbnb.utilisateurs.Hote;
-import dubois.airbnb.utilisateurs.Voyageur;
 
-import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws Exception {

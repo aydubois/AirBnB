@@ -74,7 +74,7 @@ public class JeuDeTest {
         return listeDateDeReservation[new Random().nextInt(listeDateDeReservation.length)];
     }
     private boolean getPiscine(){
-        return randomInt(0,1) == 0 ? false : true;
+        return randomInt(0,1) == 0;
     }
     private int randomInt(int min,int max){
         return ThreadLocalRandom.current().nextInt(min, max + 1);

@@ -10,7 +10,7 @@ public abstract class Sejour implements SejourInterface{
     protected Logement mLogement;
     protected int mNbVoyageurs;
     protected String mText;
-    protected float mTarif;
+    protected int mTarif;
 
     public Sejour(MaDate pDateArrivee,int pNbNuits, Logement pLogement, int pNbVoyageurs){
         mDateArrivee = pDateArrivee;
@@ -28,8 +28,6 @@ public abstract class Sejour implements SejourInterface{
         return mLogement.getNbVoyageursMax() >= mNbVoyageurs ? true : false;
     }
 
-    @Override
-    public abstract boolean verificationNombreDeNuits();
     public abstract void afficher();
     public abstract void miseAJourDuTarif();
 }

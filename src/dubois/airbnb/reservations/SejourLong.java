@@ -5,7 +5,7 @@ import dubois.airbnb.outils.MaDate;
 
 public class SejourLong extends Sejour{
     private final int PROMOTION_EN_POURCENTAGE = 20;
-    private float mPromotion;
+    private int mPromotion;
 
     public SejourLong(MaDate pDateArrivee, int pNbNuits, Logement pLogement, int pNbVoyageurs){
         super(pDateArrivee, pNbNuits, pLogement, pNbVoyageurs);
@@ -18,7 +18,7 @@ public class SejourLong extends Sejour{
     }
     @Override
     public void miseAJourDuTarif(){
-        mPromotion = mNbNuits * mLogement.getTarifParNuit()*PROMOTION_EN_POURCENTAGE/100;
+        mPromotion = (int)(mNbNuits * mLogement.getTarifParNuit()*(PROMOTION_EN_POURCENTAGE*0.01));
         mTarif =(mNbNuits * mLogement.getTarifParNuit() - mPromotion);
     }
 
