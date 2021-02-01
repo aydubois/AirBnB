@@ -17,4 +17,8 @@ public class Hote extends Personne{
             System.out.println("qui s'engage à répondre dans les "+mDelaiDeReponse+" heures. ");
         }
     }
+
+    public int getDelaiDeReponse() {
+        return mDelaiDeReponse;
+    }
 }

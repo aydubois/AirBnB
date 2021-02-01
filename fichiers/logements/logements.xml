@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<Logements>
+
+	<Appartement>
+		<hote>
+			<nom>Bardu</nom>
+			<prenom>Peter</prenom>
+			<age>31</age>
+			<delaiReponse>12</delaiReponse>
+		</hote>
+		<tarifParNuit>50</tarifParNuit>
+		<adresse>81 rue Colbert, Tours</adresse>
+		<superficie>58</superficie>
+		<nbVoyageursMax>4</nbVoyageursMax>
+		<numeroEtage>2</numeroEtage>
+		<superficieBalcon>10</superficieBalcon>
+	</Appartement>
+	
+	<Appartement>
+		<hote>
+			<nom>Michel</nom>
+			<prenom>Paulette</prenom>
+			<age>52</age>
+			<delaiReponse>1</delaiReponse>
+		</hote>
+		<tarifParNuit>70</tarifParNuit>
+		<adresse>83 rue Colbert, Tours</adresse>
+		<superficie>120</superficie>
+		<nbVoyageursMax>4</nbVoyageursMax>
+		<numeroEtage>1</numeroEtage>
+		<superficieBalcon>0</superficieBalcon>
+	</Appartement>
+	
+	<Appartement>
+		<hote>
+			<nom>Bardu</nom>
+			<prenom>Peter</prenom>
+			<age>31</age>
+			<delaiReponse>12</delaiReponse>
+		</hote>
+		<tarifParNuit>80</tarifParNuit>
+		<adresse>85 rue Colbert, Tours</adresse>
+		<superficie>80</superficie>
+		<nbVoyageursMax>2</nbVoyageursMax>
+		<numeroEtage>3</numeroEtage>
+		<superficieBalcon>0</superficieBalcon>
+	</Appartement>
+	
+	<Maison>
+		<hote>
+			<nom>Bardu</nom>
+			<prenom>Peter</prenom>
+			<age>31</age>
+			<delaiReponse>12</delaiReponse>
+		</hote>
+		<tarifParNuit>100</tarifParNuit>
+		<adresse>42 Rue Lakanal, Tours</adresse>
+		<superficie>100</superficie>
+		<nbVoyageursMax>3</nbVoyageursMax>
+		<superficieJardin>0</superficieJardin>
+		<possedePiscine>0</possedePiscine>
+	</Maison>
+	
+	<Maison>
+		<hote>
+			<nom>Jean</nom>
+			<prenom>Mi</prenom>
+			<age>25</age>
+			<delaiReponse>24</delaiReponse>
+		</hote>
+		<tarifParNuit>200</tarifParNuit>
+		<adresse>42 Rue Lakanal, Tours</adresse>
+		<superficie>180</superficie>
+		<nbVoyageursMax>6</nbVoyageursMax>
+		<superficieJardin>2000</superficieJardin>
+		<possedePiscine>1</possedePiscine>
+	</Maison>
+
+</Logements>

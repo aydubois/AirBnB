@@ -16,6 +16,15 @@ public class Personne {
     public int getIdentifiant(){
         return mIdentifiant;
     }
+    public String getNom(){
+        return mNom;
+    }
+    public String getPrenom(){
+        return mPrenom;
+    }
+    public int getAge(){
+        return mAge;
+    }
     public void afficher(){
         System.out.print(mNom+ " "+mPrenom+ "  ("+ mAge+" ans) ");
     }

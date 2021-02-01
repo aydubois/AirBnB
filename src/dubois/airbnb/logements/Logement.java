@@ -28,6 +28,12 @@ public abstract class Logement {
     public int getNbVoyageursMax() {
         return mNbVoyageursMax;
     }
+    public int getmSuperficie() {
+        return mSuperficie;
+    }
+    public String getAdresse() {
+        return mAdresse;
+    }
     public abstract void afficher();
     public abstract int getIdentifiant();
 }

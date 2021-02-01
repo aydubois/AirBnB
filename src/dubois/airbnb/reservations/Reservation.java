@@ -6,6 +6,8 @@ import dubois.airbnb.utilisateurs.Voyageur;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
 
 public class Reservation {
@@ -39,9 +41,9 @@ public class Reservation {
         // TODO : rajour vérif. un seul sejour par logement pour une même date
     }
     private void creerFichierReservation(){
-        File fichier = new File("fichiers/"+mIdentifiant+"_reservation.txt");
+        File fichier = new File("fichiers/reservations/"+mIdentifiant+"_reservation.txt");
         try{
-            FileWriter fileW = new FileWriter("fichiers/"+mIdentifiant+"_reservation.txt");
+            FileWriter fileW = new FileWriter("fichiers/reservations/"+mIdentifiant+"_reservation.txt");
             fileW.write(
             "Numéro du voyageur : "+mVoyageur.getIdentifiant()+"\n"+
                 "Numéro du logement : "+mSejour.getLogement().getIdentifiant()+"\n"+
@@ -50,6 +52,7 @@ public class Reservation {
                 "Nombre de personnes : "+mSejour.getNbVoyageurs()
             );
         } catch (IOException e) {
+            System.out.println("Oops, le fichier ne veut pas s'écrire.");
             e.printStackTrace();
         }
     }
