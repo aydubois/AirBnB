@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Voyageurs>
+
+    <Voyageur>
+        <nom>Lacroix</nom>
+        <prenom>Amélie</prenom>
+        <age>27</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Lacroix</nom>
+        <prenom>Angélique</prenom>
+        <age>52</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Dumas</nom>
+        <prenom>Stéphanie</prenom>
+        <age>38</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Corona</nom>
+        <prenom>Alexandre</prenom>
+        <age>50</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Vidal</nom>
+        <prenom>Benjamin</prenom>
+        <age>31</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Laffont</nom>
+        <prenom>Antoine</prenom>
+        <age>19</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Perrot</nom>
+        <prenom>Charles</prenom>
+        <age>63</age>
+    </Voyageur>
+
+    <Voyageur>
+        <nom>Marchal</nom>
+        <prenom>Christopher</prenom>
+        <age>39</age>
+    </Voyageur>
+
+
+</Voyageurs>

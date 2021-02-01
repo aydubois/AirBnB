@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<Hotes>
+    <Hote>
+        <nom>Bardu</nom>
+        <prenom>Peter</prenom>
+        <age>31</age>
+        <delaiReponse>12</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Michel</nom>
+        <prenom>Paulette</prenom>
+        <age>52</age>
+        <delaiReponse>1</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Jean</nom>
+        <prenom>Mi</prenom>
+        <age>25</age>
+        <delaiReponse>24</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Shygly</nom>
+        <prenom>Shroom</prenom>
+        <age>27</age>
+        <delaiReponse>18</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Michel</nom>
+        <prenom>Paulette</prenom>
+        <age>52</age>
+        <delaiReponse>1</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Lawn</nom>
+        <prenom>Benoist</prenom>
+        <age>38</age>
+        <delaiReponse>10</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Jacky</nom>
+        <prenom>Michel</prenom>
+        <age>50</age>
+        <delaiReponse>9</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Punk</nom>
+        <prenom>Fanny</prenom>
+        <age>31</age>
+        <delaiReponse>11</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Romet</nom>
+        <prenom>Juliette</prenom>
+        <age>19</age>
+        <delaiReponse>4</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Guerin</nom>
+        <prenom>Pierrette</prenom>
+        <age>63</age>
+        <delaiReponse>15</delaiReponse>
+    </Hote>
+
+    <Hote>
+        <nom>Lord</nom>
+        <prenom>Noman</prenom>
+        <age>39</age>
+        <delaiReponse>2</delaiReponse>
+    </Hote>
+
+
+</Hotes>
