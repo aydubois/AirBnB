@@ -1,6 +1,8 @@
 package dubois.airbnb.utilisateurs;
 
-public class Personne {
+import dubois.airbnb.outils.Compare;
+
+public class Personne implements Comparable<Personne> {
     private static int id = 0;
     private int mIdentifiant;
     protected String mPrenom;
@@ -27,5 +29,11 @@ public class Personne {
     }
     public void afficher(){
         System.out.print(mNom+ " "+mPrenom+ "  ("+ mAge+" ans) ");
+    }
+
+
+    @Override
+    public int compareTo(Personne pers) {
+        return mAge - pers.mAge ;
     }
 }

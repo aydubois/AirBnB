@@ -1,5 +1,7 @@
 package dubois.airbnb.utilisateurs;
 
+import dubois.airbnb.outils.Compare;
+
 public class Hote extends Personne{
     private int mDelaiDeReponse;
 
@@ -22,4 +24,9 @@ public class Hote extends Personne{
         return mDelaiDeReponse;
     }
 
+    @Override
+    public int compareTo(Personne o) {
+        Hote pers = (Hote) o;
+        return mDelaiDeReponse - pers.mDelaiDeReponse ;
+    }
 }
