@@ -20,8 +20,9 @@ public class CompareGenericMultiple2<T extends Comparable<T>>{
      * @param pObject1
      * @param pObject2
      * Les deux paramètres doivent être de même type et implémenter Comparable<T>
+     * @throws ClassCastException
      */
-    public CompareGenericMultiple2(T pObject1, T pObject2){
+    public CompareGenericMultiple2(T pObject1, T pObject2) throws ClassCastException{
         arrayObjects.add(pObject1);
         arrayObjects.add(pObject2);
         type = pObject1.getClass();
