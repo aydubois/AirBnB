@@ -1,9 +1,7 @@
 package dubois.airbnb.utilisateurs;
 
-import dubois.airbnb.outils.Compare;
-
-public class Hote extends Personne{
-    private int mDelaiDeReponse;
+public class Hote extends Personne implements Cloneable{
+    private final int mDelaiDeReponse;
 
     public Hote(String pPrenom, String pNom, int pAge, int pDelaiDeReponse){
         super( pPrenom, pNom, pAge);
@@ -28,5 +26,14 @@ public class Hote extends Personne{
     public int compareTo(Personne o) {
         Hote pers = (Hote) o;
         return mDelaiDeReponse - pers.mDelaiDeReponse ;
+    }
+
+    public Object clone() {
+        Hote h = null;
+        try {
+            h = (Hote)super.clone();
+
+        } catch (CloneNotSupportedException e) {} // Won't happen
+        return h;
     }
 }

@@ -1,54 +1,99 @@
 package dubois.airbnb.logements;
 
-import dubois.airbnb.outils.Compare;
 import dubois.airbnb.utilisateurs.Hote;
-import dubois.airbnb.utilisateurs.Personne;
 
 public abstract class Logement  implements Comparable<Logement> {
     private static int id = 0;
-    protected int mIdentifiant;
-    private String mName;
-    protected Hote mHote;
-    private int mTarifParNuit;
-    protected String mAdresse;
-    protected int mSuperficie;
-    private int mNbVoyageursMax;
-    protected String mText;
+    protected final int mIdentifiant;
+    private final String mName;
+    protected final Hote mHote;
+    private final int mTarifParNuit;
+    protected final String mAdresse;
+    protected final int mSuperficie;
+    private final int mNbVoyageursMax;
 
+    /**
+     * Constructor
+     * @param pHote : (Hote)
+     * @param pTarifParNuit (int) in euros
+     * @param pAdresse (String) full address (N°, street, postcode, city)
+     * @param pSuperficie (int) in square meters
+     * @param pNbVoyageursMax (int) maximum number of travellers who can come to the accommodation on the same booking
+     * Automatic creation of the name of the accommodation (String) mName : Logmt_nameHote_idLogement
+     */
     public Logement(Hote pHote, int pTarifParNuit, String pAdresse, int pSuperficie, int pNbVoyageursMax){
-        mHote = pHote;
+        mIdentifiant = ++id;
+        mHote = (Hote)pHote.clone(); //Avoids unwanted changes outside the class
         mTarifParNuit = pTarifParNuit;
         mAdresse = pAdresse;
         mSuperficie = pSuperficie;
         mNbVoyageursMax = pNbVoyageursMax;
-        mIdentifiant = ++id;
-        mName = "";
-
+        mName = "Logmt_"+getNameHote()+"_"+mIdentifiant;
     }
-    public String getNameHote(){return mHote.getNom();}
+
+    /**
+     * Creation of the text to be displayed (String) mText
+     * Method called from the constructor
+     * @return (String)
+     */
+    protected abstract String createTextToDisplay();
+
+    /**
+     * Displays an explanatory text on housing
+     */
+    public abstract void afficher();
+
+    /**
+     * @return (String) hostName
+     */
+    public String getNameHote(){
+        return mHote.getNom();
+    }
+
+    /**
+     * @return (int) priceForOneNight - in euros
+     */
     public int getTarifParNuit() {
         return mTarifParNuit;
     }
+
+    /**
+     * @return (int) maximumNumberOfTravellers
+     */
     public int getNbVoyageursMax() {
         return mNbVoyageursMax;
     }
-    public int getSuperficie() {
-        return mSuperficie;
-    }
-    public String getAdresse() {
-        return mAdresse;
-    }
-    public abstract void afficher();
-    public abstract int getIdentifiant();
-    public void setName(String pName){
-        mName = pName;
-    }
+
+    /**
+     * @return (int) surface - in square meters
+     */
+    public int getSuperficie() { return mSuperficie; }
+
+    /**
+     * @return (String) address
+     */
+    public String getAdresse() {return mAdresse;}
+
+    /**
+     * @return (int) id
+     */
+    public int getIdentifiant(){return mIdentifiant; }
+
+    /**
+     * @return (String)
+     */
     public String getName(){
         return mName;
     }
 
+    /**
+     * @param logement : (Logement) housing that you want to compare with the current housing.
+     * Comparison made on the price for one night.
+     * @return (int) result of :  this.tarif - logement.tarif
+     */
     @Override
-    public int compareTo(Logement pers) {
-        return mTarifParNuit - pers.mTarifParNuit ;
+    public int compareTo(Logement logement) {
+        return mTarifParNuit - logement.mTarifParNuit ;
     }
+
 }

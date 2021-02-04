@@ -1,30 +1,32 @@
 package dubois.airbnb.reservations;
 
-import dubois.airbnb.menu.Menu;
+import dubois.airbnb.outils.MaDate;
 import dubois.airbnb.utilisateurs.Voyageur;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.text.ParseException;
 import java.util.Date;
 
 public class Reservation {
     private static int id = 0;
-    private int mIdentifiant;
-    private Sejour mSejour;
-    private Voyageur mVoyageur;
-    private boolean mEstValidee;
-    private Date mDateDeReservation;
+    private final int mIdentifiant;
+    private final Sejour mSejour;
+    private final Voyageur mVoyageur;
+    private  boolean mEstValidee;
+    private  MaDate mDateDeReservation;
 
     public Reservation(Sejour pSejour,Voyageur pVoyageur, Date pDateDeReservation ) throws Exception{
-        mSejour = pSejour;
-        mVoyageur = pVoyageur;
-        mDateDeReservation = pDateDeReservation;
+        if(pSejour == null || pVoyageur == null){
+            throw new NullPointerException("Le séjour et le voyageur doivent être instanciés.");
+        }
+        mSejour = (Sejour)pSejour.clone();
+        mVoyageur = (Voyageur) pVoyageur.clone();
+        mDateDeReservation = (MaDate) pDateDeReservation.clone();
         mIdentifiant = ++id;
-        mEstValidee = estValide();
-        if(!mEstValidee){
+        try{
+            mEstValidee = estValide();
+        }catch(Exception e){
             throw new Exception("La date d'arrivée du séjour est erronée ou le nombre de voyageurs est incorrect.");
         }
         creerFichierReservation();
@@ -36,12 +38,12 @@ public class Reservation {
         mSejour.afficher();
     }
 
-    private boolean estValide(){
+    private boolean estValide() throws Exception {
          return mSejour.verificationDateArrivee() && mSejour.verificationNombreDeVoyageurs() ;
         // TODO : rajour vérif. un seul sejour par logement pour une même date
     }
     private void creerFichierReservation(){
-        File fichier = new File("fichiers/reservations/"+mIdentifiant+"_reservation.txt");
+        new File("fichiers/reservations/"+mIdentifiant+"_reservation.txt");
         try{
             FileWriter fileW = new FileWriter("fichiers/reservations/"+mIdentifiant+"_reservation.txt");
             fileW.write(
@@ -55,5 +57,21 @@ public class Reservation {
             System.out.println("Oops, le fichier ne veut pas s'écrire.");
             e.printStackTrace();
         }
+    }
+    public Sejour getSejour(){
+        return (Sejour) mSejour.clone();
+    }
+    public void setEstValidee(boolean mEstValidee) {
+        try{
+            if(mEstValidee == estValide()){
+                this.mEstValidee = mEstValidee;
+            }
+        }catch (Exception e){
+            //TODO
+        }
+    }
+
+    public void setDateDeReservation(MaDate mDateDeReservation) {
+        this.mDateDeReservation = (MaDate) mDateDeReservation.clone();
     }
 }

@@ -46,9 +46,16 @@ public class ParseXmlLogements {
         }
     }
 
+    /**
+     * @return Arraylist<Logement>
+     */
     public ArrayList<Logement> getArrayLogements(){
         return logementsObject;
     }
+
+    /**
+     * @return ArrayList<Hote>
+     */
     public ArrayList<Hote> getArrayHote(){
         return hotesObject;
     }

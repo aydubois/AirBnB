@@ -5,6 +5,10 @@ import dubois.airbnb.logements.Logement;
 import dubois.airbnb.utilisateurs.Hote;
 import dubois.airbnb.utilisateurs.Personne;
 
+/**
+ * Préférer utiliser CompareGenericMultiple2
+ */
+@Deprecated
 public class CompareGeneric<T> {
     private T object1;
     private T object2;

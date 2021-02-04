@@ -10,6 +10,7 @@ import dubois.airbnb.reservations.SejourLong;
 import dubois.airbnb.utilisateurs.Hote;
 import dubois.airbnb.utilisateurs.Voyageur;
 
+import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -35,11 +36,11 @@ public class JeuDeTest {
         maison =  new Maison(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,5000), randomInt(1,15), getPiscine(),randomInt(50,8000));
         appartement = new Appartement(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,500), randomInt(1,15), randomInt(1,50),randomInt(0,20));
 
+        try{
         MaDate dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
         sejour = createSejour(dateN, "", "");
         dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
 
-        try{
             reservation = new Reservation(sejour, voyageur, dateN);
         }catch(Exception e){
             System.out.println("La réservation de ce séjour est impossible.");
@@ -58,11 +59,11 @@ public class JeuDeTest {
         maison =  new Maison(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,5000), randomInt(1,15), getPiscine(),randomInt(50,8000));
         appartement = new Appartement(hote, randomInt(50,1500), getListeAdresse(), randomInt(20,500), randomInt(1,15), randomInt(1,50),randomInt(0,20));
 
+        try{
         MaDate dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
         sejour = createSejour(dateN, pTypeLogement, pTypeDuree);
         dateN = new MaDate("dd/MM/yyyy",getListeDateDeReservation());
 
-        try{
             reservation = new Reservation(sejour, voyageur, dateN);
         }catch(Exception e){
             System.out.println("La réservation de ce séjour est impossible.");
@@ -86,7 +87,7 @@ public class JeuDeTest {
     private int randomInt(int min,int max){
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
-    private Sejour createSejour(MaDate pdate, String pTypeLogement, String pDuree){
+    private Sejour createSejour(MaDate pdate, String pTypeLogement, String pDuree) throws ParseException {
         String logement = pTypeLogement == "" ? (randomInt(0,1) == 0 ? "appartement" : "maison") : pTypeLogement;
         String duree = pDuree == "" ? (randomInt(0,1) == 0 ? "court" : "long") : pDuree;
 

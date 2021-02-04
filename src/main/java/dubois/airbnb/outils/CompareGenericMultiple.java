@@ -5,7 +5,10 @@ import dubois.airbnb.utilisateurs.Hote;
 import dubois.airbnb.utilisateurs.Personne;
 
 import java.util.ArrayList;
-
+/**
+ * Préférer utiliser CompareGenericMultiple2
+ */
+@Deprecated
 public class CompareGenericMultiple<T> {
     private ArrayList<T> arrayObjects = new ArrayList<>();
     private Class<?> type;

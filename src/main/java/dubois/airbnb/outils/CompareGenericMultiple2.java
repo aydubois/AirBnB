@@ -1,9 +1,5 @@
 package dubois.airbnb.outils;
 
-import dubois.airbnb.logements.Logement;
-import dubois.airbnb.utilisateurs.Hote;
-import dubois.airbnb.utilisateurs.Personne;
-
 import java.util.ArrayList;
 
 
@@ -60,6 +56,9 @@ public class CompareGenericMultiple2<T extends Comparable<T>>{
         arrayObjects.remove(pObject);
     }
 
+    /**
+     * @return ArrayList<T> comparative
+     */
     public ArrayList<T> getListCompare(){
         return arrayObjects;
     }

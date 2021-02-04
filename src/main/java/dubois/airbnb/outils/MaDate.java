@@ -1,5 +1,8 @@
 package dubois.airbnb.outils;
 
+import dubois.airbnb.reservations.Sejour;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,12 +36,22 @@ public class MaDate extends Date {
      * Date écrite en chaîne de caractères de la même façon que le format précisé
      * Exemple : pformat = "dd/MM/yyyy", pDateString = "21/01/2023"
      */
-    public MaDate(String pFormat, String pDateString){
-        super(parse(pDateString));
+    public MaDate(String pFormat, String pDateString) throws ParseException {
+        super((new SimpleDateFormat(pFormat)).parse(pDateString).getTime());
         sdf = new SimpleDateFormat(pFormat);
     }
     public MaDate(){
         super();
+
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    }
+    public MaDate(String pDateString) throws ParseException{
+        super((new SimpleDateFormat("dd/MM/yyyy")).parse(pDateString).getTime());
+
+
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+
     }
     /**
      * @return String correspondant aux données reçues dans le constructeur
@@ -48,4 +61,11 @@ public class MaDate extends Date {
         return sdf.format(this);
    }
     public String getFormat(){ return sdf.toPattern();}
+
+    @Override
+    public Object clone() {
+        MaDate s = null;
+        s = (MaDate) super.clone();
+        return s;
+    }
 }
