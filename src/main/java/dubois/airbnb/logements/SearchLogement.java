@@ -3,6 +3,7 @@ package dubois.airbnb.logements;
 import dubois.airbnb.outils.AirBnBData;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class SearchLogement {
@@ -13,9 +14,24 @@ public class SearchLogement {
     private final  int possedeJardin;
     private final  int possedeBalcon;
 
-    private final int POSSEDE = 1;
-    private final int NEPOSSEDEPAS = 0;
-    private final int NIMPORTE = -1;
+    private static final int POSSEDE = 1;
+    private static final int NEPOSSEDEPAS = 0;
+    private static final int NIMPORTE = -1;
+
+    //Autres possibilités :
+    //private static  enum State {POSSEDE, NEPOSSEDEPAS, NIMPORTE};
+    ////////////////////////
+    //private static  enum State {
+    // POSSEDE(1,"YES"),
+    // NEPOSSEDEPAS(0,"NO"),
+    // NIMPORTE(2, "NEITHER");
+    // private int value;
+    // private String name;5
+    // private State(int value, string name){
+    //  this.value = value;
+    //  this.name = name;
+    // };
+    ///////////////////////
 
     private SearchLogement(SearchBuilder builder){
         this.nbVoyageurs = builder.nbVoyageurs;
@@ -26,29 +42,8 @@ public class SearchLogement {
         this.possedeBalcon = builder.possedeBalcon;
     }
 
-    public int getNbVoyageurs() {
-        return nbVoyageurs;
-    }
+    // Removal of the getters because useless for the moment
 
-    public int getTarifMinNuit() {
-        return tarifMinNuit;
-    }
-
-    public int getTarifMaxNuit() {
-        return tarifMaxNuit;
-    }
-
-    public int isPossedePiscine() {
-        return possedePiscine;
-    }
-
-    public int isPossedeJardin() {
-        return possedeJardin;
-    }
-
-    public int isPossedeBalcon() {
-        return possedeBalcon;
-    }
 
     public static class SearchBuilder{
         private final int nbVoyageurs;
@@ -60,11 +55,11 @@ public class SearchLogement {
 
         public SearchBuilder(int nbVoyageurs){
             this.nbVoyageurs = nbVoyageurs;
-            this.tarifMinNuit = build().NIMPORTE;
-            this.tarifMaxNuit = build().NIMPORTE;
-            this.possedePiscine = build().NIMPORTE;
-            this.possedeJardin = build().NIMPORTE;
-            this.possedeBalcon = build().NIMPORTE;
+            this.tarifMinNuit = NIMPORTE;
+            this.tarifMaxNuit = NIMPORTE;
+            this.possedePiscine = NIMPORTE;
+            this.possedeJardin = NIMPORTE;
+            this.possedeBalcon = NIMPORTE;
         }
 
         public SearchBuilder tarifMinNuit(int tarifMinNuit){
@@ -78,17 +73,17 @@ public class SearchLogement {
         }
 
         public SearchBuilder possedePiscine(boolean possedePiscine){
-            this.possedePiscine = possedePiscine ? build().POSSEDE : build().NEPOSSEDEPAS;
+            this.possedePiscine = possedePiscine ? POSSEDE : NEPOSSEDEPAS;
             return this;
         }
 
         public SearchBuilder possedeJardin(boolean possedeJardin){
-            this.possedeJardin = possedeJardin ? build().POSSEDE : build().NEPOSSEDEPAS;
+            this.possedeJardin = possedeJardin ? POSSEDE : NEPOSSEDEPAS;
             return this;
         }
 
         public SearchBuilder possedeBalcon(boolean possedeBalcon){
-            this.possedeBalcon = possedeBalcon ? build().POSSEDE : build().NEPOSSEDEPAS;
+            this.possedeBalcon = possedeBalcon ? POSSEDE : NEPOSSEDEPAS;
             return this;
         }
         public SearchLogement build() {
@@ -96,34 +91,88 @@ public class SearchLogement {
             return searchLogement;
         }
     }
+    private Predicate<Logement> predicateNbVoyageurs(){
+        return logement -> nbVoyageurs <= logement.getNbVoyageursMax();
+    }
 
+    private Predicate<Logement> predicateTarifMinNuit(){
+        return logement -> (tarifMinNuit == NIMPORTE || tarifMinNuit <= logement.getTarifParNuit());
+    }
+    private Predicate<Logement> predicateTarifMaxNuit(){
+        return logement -> (tarifMaxNuit == NIMPORTE || tarifMaxNuit >= logement.getTarifParNuit());
+    }
+    private  Predicate<Logement> predicatePossedePiscine(){
+        return logement ->  (possedePiscine == POSSEDE && logement instanceof Maison && ((Maison) logement).isPossedePiscine()) ||
+                (possedePiscine == NEPOSSEDEPAS && ((logement instanceof Maison && !((Maison) logement).isPossedePiscine())||logement instanceof Appartement))
+            || (possedePiscine == NIMPORTE);
+    }
+    private  Predicate<Logement> predicatePossedeBalcon(){
+        return logement ->  (possedeBalcon == POSSEDE && logement instanceof Appartement && ((Appartement) logement).isPossedeBalcon()) ||
+                (possedeBalcon == NEPOSSEDEPAS && ((logement instanceof Appartement && !((Appartement) logement).isPossedeBalcon())||logement instanceof Maison))
+                || (possedeBalcon == NIMPORTE);
+    }
+    private  Predicate<Logement> predicatePossedeJardin(){
+        return logement ->  (possedeJardin == POSSEDE && logement instanceof Maison && ((Maison) logement).isPossedeJardin()) ||
+                (possedeJardin == NEPOSSEDEPAS && ((logement instanceof Maison && !((Maison) logement).isPossedeJardin())||logement instanceof Appartement))
+                || (possedeJardin == NIMPORTE);
+    }
+    /**
+     *
+     * @return (ArrayList<Logement>) list of housing matching the search criteria
+     */
     public ArrayList<Logement> result(){
-        return AirBnBData.getInstance().getListLogements().stream().filter(logement -> {
+
+        return AirBnBData.getInstance().getListLogements().stream()
+                .filter(predicatePossedeBalcon())
+                .filter(predicatePossedePiscine())
+                .filter(predicatePossedeJardin())
+                .filter(predicateTarifMaxNuit())
+                .filter(predicateTarifMinNuit())
+                .filter(predicateNbVoyageurs())
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+
+       /* return AirBnBData.getInstance().getListLogements().stream().filter(logement -> {
             Boolean logementOK = nbVoyageurs <= logement.getNbVoyageursMax();
-            if(tarifMinNuit != NIMPORTE)
+            if(!logementOK){ return false;}
+            if(tarifMinNuit != NIMPORTE){
                 logementOK = tarifMinNuit <= logement.getTarifParNuit();
-            if(tarifMaxNuit != NIMPORTE)
+                if(!logementOK){ return false;}
+            }
+            if(tarifMaxNuit != NIMPORTE){
                 logementOK = tarifMaxNuit >= logement.getTarifParNuit();
+                if(!logementOK){ return false;}
+            }
             if(possedePiscine == POSSEDE){
                 logementOK = logement instanceof Maison && ((Maison) logement).isPossedePiscine();
+                if(!logementOK){ return false;}
             }
             if(possedePiscine == NEPOSSEDEPAS){
                 logementOK = (logement instanceof Maison && !((Maison) logement).isPossedePiscine())||logement instanceof Appartement;
+                if(!logementOK){ return false;}
             }
             if(possedeBalcon == POSSEDE){
-                logementOK = logement instanceof Appartement && ((Appartement) logement).isPossedeBalson();
+                logementOK = logement instanceof Appartement && ((Appartement) logement).isPossedeBalcon();
+                if(!logementOK){ return false;}
             }
             if(possedeBalcon == NEPOSSEDEPAS){
-                logementOK = (logement instanceof Appartement && !((Appartement) logement).isPossedeBalson())||logement instanceof Maison;
+                logementOK = (logement instanceof Appartement && !((Appartement) logement).isPossedeBalcon())||logement instanceof Maison;
+                if(!logementOK){ return false;}
             }
             if(possedeJardin == POSSEDE){
                 logementOK = logement instanceof Maison && ((Maison) logement).isPossedeJardin();
+                if(!logementOK){ return false;}
             }
             if(possedeJardin == NEPOSSEDEPAS){
                 logementOK = (logement instanceof Maison && !((Maison) logement).isPossedeJardin())||logement instanceof Appartement;
+                if(!logementOK){ return false;}
             }
-            return logementOK;
-        }).collect(Collectors.toCollection(ArrayList::new));
+            return true;
+
+
+
+        }).collect(Collectors.toCollection(ArrayList::new));*/
 
 
     }

@@ -3,7 +3,7 @@ package dubois.airbnb.reservations;
 import dubois.airbnb.logements.Logement;
 import dubois.airbnb.outils.MaDate;
 
-public class SejourFactory {
+public final class SejourFactory {
     /**
      *
      * @param dateArrivee (MaDate)

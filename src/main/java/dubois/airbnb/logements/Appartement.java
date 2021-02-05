@@ -9,13 +9,13 @@ public class Appartement extends Logement implements Cloneable{
 
     /**
      * Constructor
-     * @param pHote : (Hote)
-     * @param pTarifParNuit (int) in euros
-     * @param pAdresse (String) full address (N°, street, postcode, city)
-     * @param pSuperficie (int) in square meters
-     * @param pNbVoyageursMax (int) maximum number of travellers who can come to the accommodation on the same booking
-     * @param pSuperficieBalcon (int) in square meters - if no balcony put 0
-     * @param pNumeroEtage (int) if the flat is on the ground floor put 0
+     * @param pHote - final (Hote)
+     * @param pTarifParNuit - final (int) in euros
+     * @param pAdresse - final (String) full address (N°, street, postcode, city)
+     * @param pSuperficie - final (int) in square meters
+     * @param pNbVoyageursMax - final (int) maximum number of travellers who can come to the accommodation on the same booking
+     * @param pSuperficieBalcon - final (int) in square meters - if no balcony put 0
+     * @param pNumeroEtage - final (int) if the flat is on the ground floor put 0
      * Automatic creation of the name of the accommodation (String) mName : Logmt_nameHote_idLogement
      */
     public Appartement(Hote pHote, int pTarifParNuit, String pAdresse, int pSuperficie, int pNbVoyageursMax, int pSuperficieBalcon,int pNumeroEtage){
@@ -50,7 +50,11 @@ public class Appartement extends Logement implements Cloneable{
         mHote.afficher();
         System.out.println(mText);
     }
-    public boolean isPossedeBalson(){
+
+    /**
+     * @return (boolean) balcony area > 0 ? true : false
+     */
+    public boolean isPossedeBalcon(){
         return mSuperficieBalcon > 0;
     }
 }

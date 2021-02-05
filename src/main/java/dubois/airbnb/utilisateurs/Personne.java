@@ -9,9 +9,9 @@ public class Personne implements Comparable<Personne> {
 
     /**
      * Creates a new Person
-     * @param pPrenom
-     * @param pNom
-     * @param pAge
+     * @param pPrenom - final (String)
+     * @param pNom - final (String)
+     * @param pAge - final (int)
      */
     public Personne(String pPrenom, String pNom, int pAge){
         mPrenom = pPrenom;

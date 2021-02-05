@@ -16,7 +16,10 @@ import dubois.airbnb.utilisateurs.Personne;
 import dubois.airbnb.utilisateurs.Voyageur;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.stream.Stream;
 
 public class Main {
     private static ArrayList<Logement> allLogements= new ArrayList<>();
@@ -100,42 +103,36 @@ public class Main {
          Sejour sejour3 = SejourFactory.getSejour(dateArrivee,logement, nbNuits,nbVoyageurs);
          sejour3.afficher();
          */
-        AirBnBData datas = AirBnBData.getInstance();
+        /*AirBnBData datas = AirBnBData.getInstance();
         allHotes = datas.getListHotes();
         allLogements = datas.getListLogements();
-        System.out.println("//////////////SearchBuilder(2).possedeBalcon(true)//////////////");
-        SearchLogement searchL= new SearchLogement.SearchBuilder(2).possedeBalcon(true).build();
+        SearchLogement searchL= new SearchLogement.SearchBuilder(2).tarifMinNuit(500).build();
         ArrayList<Logement> logements = searchL.result();
-        for (Logement logement:logements){
-            System.out.println("///////");
-            logement.afficher();
-            System.out.println(logement.getTarifParNuit());
-        }
-        System.out.println("//////////////SearchBuilder(2).possedeBalcon(false)//////////////");
-        SearchLogement searchL2= new SearchLogement.SearchBuilder(2).possedeBalcon(false).build();
-        ArrayList<Logement> logements2 = searchL2.result();
-        for (Logement logement:logements2){
-            System.out.println("///////");
-            logement.afficher();
-            System.out.println(logement.getTarifParNuit());
-        }
-        System.out.println("//////////////SearchBuilder(2).tarifMinNuit(400)//////////////");
-        SearchLogement searchL3= new SearchLogement.SearchBuilder(2).tarifMinNuit(400).build();
-        ArrayList<Logement> logements3 = searchL3.result();
-        for (Logement logement:logements3){
-            System.out.println("///////");
-            logement.afficher();
-            System.out.println(logement.getTarifParNuit());
-        }
-        System.out.println("//////////////SearchBuilder(2).possedePiscine(true)//////////////");
-        SearchLogement searchL4= new SearchLogement.SearchBuilder(2).possedePiscine(true).build();
-        ArrayList<Logement> logements4 = searchL4.result();
-        for (Logement logement:logements4){
-            System.out.println("///////");
-            logement.afficher();
-            System.out.println(logement.getTarifParNuit());
-        }
+        *//*logements.stream().forEach( l -> {
+            l.afficher();
+            System.out.println(l.getTarifParNuit());
+        });*//*
+        System.out.println("///////");
+        logements.stream().forEach(Logement::afficher);
 
+
+        String text = "Blah blah";
+        // Creer une classe anonyme à partir d'une classe abstraite :
+        Logement logementTest = new Logement(allHotes.get(0),100,"10 rue de la fleur 37000 Tours", 60, 3 ) {
+            //Cette classe ne voit pas les attributs privés de la classe Logement.
+
+            @Override
+            public void afficher() {
+                //blah blah
+            }
+
+            @Override
+            protected String createTextToDisplay() {
+            // par contre peut utiliser les objets présents en dehors
+                return text;
+            }
+        };*/
+        amusetoiaveclesliste();
     }
 
 
@@ -177,5 +174,43 @@ public class Main {
             }
         }
         throw new Exception("Aucune logement ne porte ce nom.");
+    }
+
+    private static void amusetoiaveclesliste(){
+        ArrayList<String> miri = new ArrayList<>();
+        miri.add("Patate");
+        miri.add("Pomme");
+        miri.add("Poire");
+        miri.add("Manger");
+        miri.add("Dormir");
+        miri.add("Boire");
+        miri.add("Blanc");
+        miri.add("Rouge");
+        miri.add("Vert");
+        Stream test = miri.stream()
+                .sorted() // tri si Class implement Comparable
+                .takeWhile(s -> !s.endsWith("e")) ; // recupere jusqu'à que la condition soit fausse.
+        test.forEach(System.out::println);
+        System.out.println("//////////");
+
+        OptionalDouble test2 =  miri.stream()
+                .mapToInt(s -> s.length()) // return (int)
+                .average(); // moyenne
+        if( test2.isPresent())
+            System.out.println(test2);
+        System.out.println("//////////");
+
+        Stream test3 = miri.stream().filter(s -> s.length() >5).map(String::toUpperCase);
+        test3.forEach(System.out::println);
+        System.out.println("//////////");
+
+        Stream test4 = miri.stream()
+                .skip(2) // commence à miri[2]
+                .limit(2) // fini à miri[2+2]
+                .map(s -> s.contains("a")); // return boolean
+        test4.forEach(System.out::println);
+        System.out.println("//////////");
+        miri.removeIf(s -> s.startsWith("B"));
+        miri.forEach(System.out::println);
     }
 }
