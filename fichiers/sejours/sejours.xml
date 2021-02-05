@@ -1,11 +1,7 @@
 <?xml version="1.0"?>
 <Sejours>
     <Sejour>
-        <dateArrivee>
-            <jour>21</jour>
-            <mois>10</mois>
-            <annee>2021</annee>
-        </dateArrivee>
+        <dateArrivee>21/10/2021</dateArrivee>
         <nbNuits>3</nbNuits>
         <Logement>
             <Appartement>
@@ -26,11 +22,7 @@
         <nbVoyageurs>1</nbVoyageurs>
     </Sejour>
     <Sejour>
-        <dateArrivee>
-            <jour>10</jour>
-            <mois>06</mois>
-            <annee>2021</annee>
-        </dateArrivee>
+        <dateArrivee>10/06/2021</dateArrivee>
         <nbNuits>3</nbNuits>
         <Logement>
             <Appartement>
@@ -51,11 +43,7 @@
         <nbVoyageurs>2</nbVoyageurs>
     </Sejour>
     <Sejour>
-        <dateArrivee>
-            <jour>01</jour>
-            <mois>02</mois>
-            <annee>2022</annee>
-        </dateArrivee>
+        <dateArrivee>01/02/2022</dateArrivee>
         <nbNuits>4</nbNuits>
         <Logement>
             <Maison>

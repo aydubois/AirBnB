@@ -15,6 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+@Deprecated
 public class ParseXmlLogements {
     private final ArrayList<Hote>  hotesObject =new ArrayList <>();
     private final ArrayList<Logement>  logementsObject =new ArrayList <>();

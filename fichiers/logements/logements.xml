@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <Logements>
+	<Logement>
 
 	<Appartement>
-		<hote>
+		<Hote>
 			<nom>Bardu</nom>
 			<prenom>Peter</prenom>
 			<age>31</age>
 			<delaiReponse>12</delaiReponse>
-		</hote>
+		</Hote>
 		<tarifParNuit>50</tarifParNuit>
 		<adresse>81 rue Colbert, Tours</adresse>
 		<superficie>58</superficie>
@@ -15,14 +16,17 @@
 		<numeroEtage>2</numeroEtage>
 		<superficieBalcon>10</superficieBalcon>
 	</Appartement>
-	
+	</Logement>
+
+	<Logement>
+
 	<Appartement>
-		<hote>
+		<Hote>
 			<nom>Michel</nom>
 			<prenom>Paulette</prenom>
 			<age>52</age>
 			<delaiReponse>1</delaiReponse>
-		</hote>
+		</Hote>
 		<tarifParNuit>70</tarifParNuit>
 		<adresse>83 rue Colbert, Tours</adresse>
 		<superficie>120</superficie>
@@ -30,14 +34,17 @@
 		<numeroEtage>1</numeroEtage>
 		<superficieBalcon>0</superficieBalcon>
 	</Appartement>
-	
+	</Logement>
+
+	<Logement>
+
 	<Appartement>
-		<hote>
+		<Hote>
 			<nom>Bardu</nom>
 			<prenom>Peter</prenom>
 			<age>31</age>
 			<delaiReponse>12</delaiReponse>
-		</hote>
+		</Hote>
 		<tarifParNuit>80</tarifParNuit>
 		<adresse>85 rue Colbert, Tours</adresse>
 		<superficie>80</superficie>
@@ -45,14 +52,16 @@
 		<numeroEtage>3</numeroEtage>
 		<superficieBalcon>0</superficieBalcon>
 	</Appartement>
-	
+	</Logement>
+	<Logement>
+
 	<Maison>
-		<hote>
+		<Hote>
 			<nom>Bardu</nom>
 			<prenom>Peter</prenom>
 			<age>31</age>
 			<delaiReponse>12</delaiReponse>
-		</hote>
+		</Hote>
 		<tarifParNuit>100</tarifParNuit>
 		<adresse>42 Rue Lakanal, Tours</adresse>
 		<superficie>100</superficie>
@@ -60,14 +69,17 @@
 		<superficieJardin>0</superficieJardin>
 		<possedePiscine>0</possedePiscine>
 	</Maison>
+	</Logement>
+
+	<Logement>
 
 	<Maison>
-		<hote>
+		<Hote>
 			<nom>Jean</nom>
 			<prenom>Mi</prenom>
 			<age>25</age>
 			<delaiReponse>24</delaiReponse>
-		</hote>
+		</Hote>
 		<tarifParNuit>200</tarifParNuit>
 		<adresse>42 Rue Lakanal, Tours</adresse>
 		<superficie>180</superficie>
@@ -75,5 +87,6 @@
 		<superficieJardin>2000</superficieJardin>
 		<possedePiscine>1</possedePiscine>
 	</Maison>
+	</Logement>
 
 </Logements>

@@ -2,11 +2,7 @@
 <Reservations>
     <Reservation>
         <Sejour>
-            <dateArrivee>
-                <jour>21</jour>
-                <mois>10</mois>
-                <annee>2021</annee>
-            </dateArrivee>
+            <dateArrivee>21/10/2021</dateArrivee>
             <nbNuits>3</nbNuits>
             <Logement>
                 <Appartement>
@@ -31,19 +27,11 @@
             <prenom>Stéphanie</prenom>
             <age>38</age>
         </Voyageur>
-        <dateDeReservation>
-            <jour>01</jour>
-            <mois>01</mois>
-            <annee>2021</annee>
-        </dateDeReservation>
+        <dateDeReservation>01/01/2021</dateDeReservation>
     </Reservation>
     <Reservation>
         <Sejour>
-            <dateArrivee>
-                <jour>10</jour>
-                <mois>06</mois>
-                <annee>2021</annee>
-            </dateArrivee>
+            <dateArrivee>10/06/2021</dateArrivee>
             <nbNuits>3</nbNuits>
             <Logement>
                 <Appartement>
@@ -68,18 +56,11 @@
             <prenom>Antoine</prenom>
             <age>19</age>
         </Voyageur>
-        <dateDeReservation>
-            <jour>05</jour>
-            <mois>01</mois>
-            <annee>2021</annee>
-        </dateDeReservation>
+        <dateDeReservation>05/01/2021</dateDeReservation>
     </Reservation>
     <Reservation>
         <Sejour>
-            <dateArrivee>
-                <jour>01</jour>
-                <mois>02</mois>
-                <annee>2022</annee>
+            <dateArrivee>01/02/2022
             </dateArrivee>
             <nbNuits>4</nbNuits>
             <Logement>
@@ -105,11 +86,7 @@
             <prenom>Benjamin</prenom>
             <age>31</age>
         </Voyageur>
-        <dateDeReservation>
-            <jour>05</jour>
-            <mois>03</mois>
-            <annee>2021</annee>
-        </dateDeReservation>
+        <dateDeReservation>05/03/2021</dateDeReservation>
     </Reservation>
 
 </Reservations>

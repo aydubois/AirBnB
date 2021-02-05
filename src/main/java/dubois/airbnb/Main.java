@@ -4,26 +4,16 @@ package dubois.airbnb;
 import dubois.airbnb.logements.Appartement;
 import dubois.airbnb.logements.Logement;
 import dubois.airbnb.logements.Maison;
-import dubois.airbnb.logements.SearchLogement;
 import dubois.airbnb.outils.AirBnBData;
-import dubois.airbnb.outils.CompareGeneric;
-import dubois.airbnb.outils.CompareGenericMultiple2;
-import dubois.airbnb.outils.MaDate;
-import dubois.airbnb.parserXml.ParseXmlLogements;
-import dubois.airbnb.reservations.*;
 import dubois.airbnb.utilisateurs.Hote;
-import dubois.airbnb.utilisateurs.Personne;
-import dubois.airbnb.utilisateurs.Voyageur;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Main {
     private static ArrayList<Logement> allLogements= new ArrayList<>();
     private static ArrayList<Hote> allHotes= new ArrayList<>();
+    private static  enum enumTest {tarif, nbVoyageursMax, addresse};
     public static void main(String[] args) throws Exception {
        /* *//*JeuDeTest jdt = new JeuDeTest();
         //JeuDeTest jdt2 = new JeuDeTest("maison","long");
@@ -106,7 +96,13 @@ public class Main {
         /*AirBnBData datas = AirBnBData.getInstance();
         allHotes = datas.getListHotes();
         allLogements = datas.getListLogements();
-        SearchLogement searchL= new SearchLogement.SearchBuilder(2).tarifMinNuit(500).build();
+
+        ParseXmlHotes parsedHotes = new ParseXmlHotes();
+        parsedHotes.parse();
+        ArrayList<Hote> hotesParsed =parsedHotes.getArrayHote();
+        System.out.println(hotesParsed.size());
+        hotesParsed.forEach(hote -> hote.afficher());*/
+        /*SearchLogement searchL= new SearchLogement.SearchBuilder(2).tarifMinNuit(500).build();
         ArrayList<Logement> logements = searchL.result();
         *//*logements.stream().forEach( l -> {
             l.afficher();
@@ -132,7 +128,15 @@ public class Main {
                 return text;
             }
         };*/
-        amusetoiaveclesliste();
+        //amusetoiavecleslistes();
+        /*ParseXml parseXml = new ParseXml.ParseBuilder("fichiers/hotes/hotes.xml", "fichiers/voyageurs/voyageurs.xml", "fichiers/logements/logements.xml")
+                .addXmlSejour("fichiers/sejours/sejours.xml").addXmlReservation("fichiers/reservations/reservations.xml").build();
+        parseXml.printList(ParseXml.ParseBuilder.types.RESERVATION);*/
+        AirBnBData.getInstance().getListVoyageurs().forEach(reservation -> {
+            reservation.afficher();
+            System.out.println("//////////////////");
+        });
+
     }
 
 
@@ -176,7 +180,7 @@ public class Main {
         throw new Exception("Aucune logement ne porte ce nom.");
     }
 
-    private static void amusetoiaveclesliste(){
+    private static void amusetoiavecleslistes(){
         ArrayList<String> miri = new ArrayList<>();
         miri.add("Patate");
         miri.add("Pomme");
@@ -197,7 +201,7 @@ public class Main {
                 .mapToInt(s -> s.length()) // return (int)
                 .average(); // moyenne
         if( test2.isPresent())
-            System.out.println(test2);
+            System.out.println(test2.getAsDouble());
         System.out.println("//////////");
 
         Stream test3 = miri.stream().filter(s -> s.length() >5).map(String::toUpperCase);
@@ -211,6 +215,12 @@ public class Main {
         test4.forEach(System.out::println);
         System.out.println("//////////");
         miri.removeIf(s -> s.startsWith("B"));
-        miri.forEach(System.out::println);
+
+        if(allLogements.stream().allMatch(logement -> logement.getTarifParNuit() > 300) ){
+            allLogements.stream().filter(logement -> logement.getNbVoyageursMax() > 2 ).findFirst().orElseThrow(()-> new NoSuchElementException("blah blah")).afficher();
+        }
+
+
+
     }
 }

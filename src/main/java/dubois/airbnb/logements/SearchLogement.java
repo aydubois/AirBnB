@@ -3,6 +3,7 @@ package dubois.airbnb.logements;
 import dubois.airbnb.outils.AirBnBData;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -130,6 +131,7 @@ public class SearchLogement {
                 .filter(predicateTarifMinNuit())
                 .filter(predicateNbVoyageurs())
                 .sorted()
+                //.sorted(Comparator.comparing(Logement::getTarifParNuit).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));
 
 
